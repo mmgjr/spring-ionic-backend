@@ -63,6 +63,12 @@ public class CursomcApplication implements CommandLineRunner{
 		//Instanciando categorias
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
+		Categoria cat3 = new Categoria(null, "Periféricos");
+		Categoria cat4 = new Categoria(null, "HD");
+		Categoria cat5 = new Categoria(null, "Processadores");
+		Categoria cat6 = new Categoria(null, "Memórias");
+		Categoria cat7 = new Categoria(null, "Placa de vídeo");
+		
 		//Instanciando Produtos
 		Produto p1 = new Produto(null,"Computador",2000.00);
 		Produto p2 = new Produto(null,"Impressora",800.00);
@@ -72,9 +78,15 @@ public class CursomcApplication implements CommandLineRunner{
 		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
 		
+		p1.getCategorias().addAll(Arrays.asList(cat1));
+		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p3.getCategorias().addAll(Arrays.asList(cat1));
+		
 		//Persistindo no banco
-		catRepo.saveAll(Arrays.asList(cat1, cat2));
+		catRepo.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		proRepo.saveAll(Arrays.asList(p1, p2, p3));
+		
+	
 		
 		//Instanciando Estado e Cidades. Settando as relações e persistindo no banco.
 		Estado est1 = new Estado(null, "Minas Gerais");
@@ -83,10 +95,6 @@ public class CursomcApplication implements CommandLineRunner{
 		Cidade cit1 = new Cidade(null, "Uberlândia", est1); 
 		Cidade cit2 = new Cidade(null, "São Paulo", est2); 
 		Cidade cit3 = new Cidade(null, "Campinas", est2); 
-		
-		p1.getCategorias().addAll(Arrays.asList(cat1));
-		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
-		p3.getCategorias().addAll(Arrays.asList(cat1));
 		
 		est1.getCidades().addAll(Arrays.asList(cit1));
 		est2.getCidades().addAll(Arrays.asList(cit2,cit3));
